@@ -1,68 +1,400 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 201, 77%, 59%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 200, 100%, 96%;
+    --secondary-foreground: 201, 66%, 56%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 232 93% 58%;
+    --radius: 0.75rem;
+    --kakao: 53.98 100% 48.82%;
+    --kakao-foreground: 0 0% 13.33%;
+  }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
-a:hover {
-  color: #535bf2;
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  touch-action: pan-y;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body,
+html,
+.main .main_content {
+  overscroll-behavior: none !important;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+a {
+  text-decoration: none;
+}
+
+.main {
+  background: var(
+    --blue-GD,
+    linear-gradient(180deg, #1485c4 7.08%, #55abdc 38.5%, #fff 127.13%)
+  );
+  font-family: "Pretendard";
+  letter-spacing: -0.08rem;
+  max-width: 840px;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch; /* 異붽� */
+}
+
+.App {
+  text-align: center;
+  background-color: #ffffff;
+  overflow-y: auto; /* �ㅽ겕濡ㅼ씠 蹂댁씠�꾨줉 �ㅼ젙 */
+}
+
+@media screen and (min-width: 840px) {
+  .main_content {
+    position: relative;
+    max-width: 840px;
+    min-height: 100vh;
+  }
+
+  .main_content:before {
+    content: " ";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid;
+    border-color: #d1d6db;
+  }
+
+  .main_content:after {
+    content: " ";
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    border-right: 1px solid;
+    border-color: #d1d6db;
+  }
+}
+
+.filter_btn {
+  opacity: 0;
+}
+
+.filter_btn_label {
+  color: #333;
+  font-family: "Pretendard Variable";
+  width: 50%;
+  padding: 15px 10px;
+  font-size: 16px;
+  font-style: normal;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  line-height: normal;
+  border-bottom: 1.5px solid var(--40, #ededed);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.filter_btn_label.active {
+  border-bottom: 1.5px solid var(--kakao-logo, #000);
+}
+
+.wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #ffffff;
+  border-top: 1px solid #d4d4d4;
+}
+
+.bottom_button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #ffffff;
+}
+
+.above_wrapper {
+  position: fixed;
+  top: 80%;
+  left: 83%;
+  right: 0;
+  height: 80px;
+  background: transparent;
+}
+
+nav {
+  overflow: hidden;
+  border-top: 2px solid grey;
+}
+
+nav > div {
+  float: left;
+  width: 20%;
+  margin-top: 7px;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+}
+
+.nav-item {
+  color: grey;
+}
+
+.bottom_nav_font {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  margin-left: 0px;
+  margin-top: -14px;
+}
+
+/* Tailwind CSS customization if needed */
+
+@media (max-width: 375px) {
+  .profile-spacing {
+    margin-bottom: 2rem; /* Adjust as needed for spacing */
   }
-  a:hover {
-    color: #747bff;
+
+  .profile-container {
+    margin-bottom: 4rem; /* Ensure Profile is not obscured */
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+/* Utility classes */
+.space-y-8 {
+  margin-bottom: 2rem; /* Adjust as needed */
+}
+
+/* index.css */
+
+.divMargin {
+  height: 0;
+}
+
+@media (min-height: 630px) {
+  /* Small devices (640px and up) */
+  .divMargin {
+    margin-top: -50px; /* Adjust as needed */
   }
+}
+
+@media (min-height: 670px) {
+  /* Small devices (640px and up) */
+  .divMargin {
+    height: -8rem; /* Adjust as needed */
+  }
+}
+
+@media (min-height: 768px) {
+  /* Medium devices (768px and up) */
+  .divMargin {
+    height: 7rem; /* Adjust as needed */
+  }
+}
+
+@media (min-height: 1024px) {
+  /* Large devices (1024px and up) */
+  .divMargin {
+    height: 12rem; /* Adjust as needed */
+  }
+}
+
+/* index.css */
+
+/* Responsive styling for the SVG */
+.onboarding-bus-svg {
+  width: 50%; /* Adjust as needed */
+  height: auto;
+}
+
+/* Additional responsiveness based on viewport sizes */
+@media (min-width: 480px) {
+  .onboarding-bus-svg {
+    width: 40%; /* Adjust for medium screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .onboarding-bus-svg {
+    width: 30%; /* Adjust for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .onboarding-bus-svg {
+    width: 25%; /* Adjust for extra-large screens */
+  }
+}
+
+.footer {
+  margin-top: 30vh; /* Default margin calculated based on the height of 844px and margin of 250px */
+  height: -webkit-fill-available;
+}
+
+input[type="date"]::-webkit-clear-button,
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="date"] {
+  position: relative;
+  background: url(./assets/calendar.svg);
+  background-repeat: no-repeat;
+  background-position: right; /* 배경 이미지를 오른쪽 중앙으로 위치시킵니다 */
+
+  padding-right: 10px;
+  color: #858585;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: transparent;
+}
+
+/* OpenClassThird.css */
+
+.class_button {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  width: 163px;
+  height: 106px;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.button-computer {
+  background-image: url("/assets/computerClass.png");
+}
+
+.button-art {
+  background-image: url("/assets/ArtClass.png");
+}
+
+.button-science {
+  background-image: url("/assets/ScienceClass.png");
+}
+
+.button-humanities {
+  background-image: url("/assets/HumanityClass.png");
+}
+
+.selected {
+  border: 2px solid #47aee7;
+  background-color: #d9eaff;
 }
