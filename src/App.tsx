@@ -4,9 +4,8 @@ import { Toaster } from './components/ui/sonner';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryCache, QueryClientProvider } from '@tanstack/react-query';
 import { APIResponseError } from 'endpoint-client';
-import './App.css'
-import './index.css'
-
+import './App.css';
+import './index.css';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -27,8 +26,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-
-  
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
