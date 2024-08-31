@@ -25,7 +25,7 @@ export function Input(){
                 </div>
             </div>
             <div className="mt-40">
-                <button className="bg-orange-400 py-1 hover:bg-orange-300 border-none px-10 rounded-md font-semibold">MATEY 시작하기!</button>
+                <button className="bg-orange-400 py-1 hover:bg-orange-300 border-none px-14 rounded-md font-semibold">MATEY 시작하기!</button>
             </div>
         </>
 
