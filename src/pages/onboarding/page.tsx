@@ -7,13 +7,13 @@ import { Spacing } from '../../containers/spacing';
 import { InfoBox } from './containers/InfoBox';
 import { InputUnderLine } from './containers/InputUnderLine';
 import { Motion, spring } from 'react-motion';
-import { useLocation, useNavigate } from 'react-router-dom'; 
-import { OnboardingSuccess } from './containers/Success'; 
+import { useLocation, useNavigate } from 'react-router-dom';
+import { OnboardingSuccess } from './containers/Success';
 
 export function Onboarding() {
   const [instagramId, setInstagramId] = useState('');
   const [password, setPassword] = useState('');
-  const location = useLocation(); 
+  const location = useLocation();
   const navigate = useNavigate();
 
   if (location.pathname === '/onboarding/success') {
@@ -42,7 +42,7 @@ export function Onboarding() {
               className="w-[90%] text-start"
               placeholder="인스타그램 아이디"
               value={instagramId}
-              onChange={(e) => setInstagramId(e.target.value)} 
+              onChange={(e) => setInstagramId(e.target.value)}
             />
           </PositionCenter>
 
@@ -64,7 +64,7 @@ export function Onboarding() {
                 style={{
                   opacity,
                   height,
-                  overflow: 'hidden', 
+                  overflow: 'hidden',
                 }}
               >
                 <PositionCenter>
@@ -73,7 +73,7 @@ export function Onboarding() {
                     placeholder="비밀번호"
                     type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)} 
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </PositionCenter>
 
@@ -84,7 +84,7 @@ export function Onboarding() {
                 <Motion
                   style={{
                     opacity: spring(password.trim() !== '' ? 1 : 0),
-                    height: spring(password.trim() !== '' ? 200 : 0), 
+                    height: spring(password.trim() !== '' ? 200 : 0),
                   }}
                 >
                   {({ opacity, height }) => (
@@ -92,7 +92,7 @@ export function Onboarding() {
                       style={{
                         opacity,
                         height,
-                        overflow: 'hidden', 
+                        overflow: 'hidden',
                       }}
                     >
                       <div className="bottom_button">
@@ -100,7 +100,7 @@ export function Onboarding() {
                           onClick={handleOnboarding}
                           className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"
                         >
-                          Matey 시작하기
+                          MATEY 시작하기 !
                         </Button>
                       </div>
                     </div>
