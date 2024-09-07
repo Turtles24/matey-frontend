@@ -184,3 +184,21 @@ a {
     border-color: #d1d6db;
   }
 }
+
+.menu-icon {
+  stroke: black;
+}
+
+.menu-icon:hover {
+  stroke: white;
+}
+
+
+#menu_icon:hover  {
+  stroke: white;
+}
+
+
+#menu_icon {
+  stroke: black;
+}
