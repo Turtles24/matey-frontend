@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MainPage } from './main/page';
 import { Onboarding } from './onboarding/page';
 import { Start } from './onboarding/containers/Start';
+import { Menu } from './userInfo/page';
 
 export function MainRouter() {
   return (
@@ -10,6 +11,7 @@ export function MainRouter() {
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/start" element={<Start />} />
       <Route path="/onboarding/success" element={<Onboarding />} />
+      <Route path="/userInfo" element={<Menu />} />
     </Routes>
   );
 }
