@@ -22,8 +22,22 @@ export function Test() {
   const [fadeIn, setFadeIn] = useState(false); // fadeIn 상태 추가
   const [userData, setUserData] = useState<UserData | null>(null);
 
-  const handleCard = () => {
+  const handleCard = async () => {
     setAnimate(true);
+
+    try {
+      const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/card/click', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+      console.log('Card Click registered:', data);
+    } catch (error) {
+      console.error('Error registering click:', error);
+    }
   };
 
   // 클릭 시 animate 상태에 따라 clicked와 fadeIn 상태를 설정
@@ -53,7 +67,7 @@ export function Test() {
 
   const handleClick = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/click', {
+      const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/click', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

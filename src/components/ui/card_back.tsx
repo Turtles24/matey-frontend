@@ -31,6 +31,34 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(
       window.open(url, '_blank');
     };
 
+    const handlePayClick = async (text: string | null) => {
+      if (text) {
+        navigator.clipboard.writeText(text).then(
+          () => {
+            alert('복사되었습니다!');
+          },
+          () => {
+            alert('복사에 실패했습니다.');
+          }
+        );
+      } else {
+        alert('복사할 내용이 없습니다.');
+      }
+      try {
+        const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/pay/click', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await response.json();
+        console.log('Pay Click registered:', data);
+      } catch (error) {
+        console.error('Error registering click:', error);
+      }
+    };
+
     return (
       <div className="h-[410px] w-[250px] rounded-[10px] bg-[#7EC8FF] font-extrabold tracking-wide">
         <div className="pl-[22px] pt-[30px]">
@@ -61,7 +89,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(
             </div>
           </div>
           <div>
-            <div className="cursor-pointer text-end text-[18px] text-white" onClick={() => handleCopy(bank_id)}>
+            <div className="cursor-pointer text-end text-[18px] text-white" onClick={() => handlePayClick(bank_id)}>
               {bank_id}
             </div>
           </div>
