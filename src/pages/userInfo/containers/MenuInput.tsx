@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { months, years, days } from './data/index'; // years 배열을 import
+import { months, years, days, gender } from './data/index'; // years 배열을 import
 
 export interface MenuInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -48,6 +48,16 @@ const MenuInput = React.forwardRef<HTMLInputElement, MenuInputProps>(({ name, ti
                   ))}
                 </select>
                 <p className="ml-[2px] text-[11px] font-normal text-[#999]">일</p>
+              </div>
+
+              <div className='flex items-baseline'>
+                <select className='ml-2 h-[26px] w-[66px] rounded-[10px] border-[1px] border-[#DADADA] bg-[#FFF] pl-1'>
+                  {gender.map((genders)=>(
+                    <option key ={genders} value = {genders}>
+                      {genders}
+                    </option>
+                  ))}
+                </select>
               </div>
             </>
           )}
