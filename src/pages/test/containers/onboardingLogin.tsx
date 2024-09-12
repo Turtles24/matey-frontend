@@ -36,7 +36,7 @@ export default function OnboardingLogin() {
       insta != '' &&
       birth != ''
     ) {
-      navigate('/test');
+      navigate(`/matey-frontend/test?insta=${insta}`);
     } else {
       alert('값을 모두 입력해주세요');
     }
