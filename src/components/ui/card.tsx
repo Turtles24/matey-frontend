@@ -9,7 +9,10 @@ export interface CardProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Card = React.forwardRef<HTMLInputElement, CardProps>(({ birth, first_name, second_name, job }) => {
   return (
-    <div className="relative flex h-[222px] w-[350px] rounded-[10px] bg-[#7EC8FF] text-[#FFF613]">
+    <div
+      className="relative flex h-[222px] w-[350px] rounded-[10px] bg-[#7EC8FF] text-[#FFF613]"
+      style={{ fontFamily: 'YUniverse-B' }}
+    >
       <div className="ml-2 mt-2 text-start">
         <div className="absolute top-[30px] -translate-y-1/2 text-4xl">{first_name}</div>
         <div className="absolute -bottom-[15px] -translate-y-1/2">

@@ -31,8 +31,8 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(
     };
 
     return (
-      <div className="h-[400px] w-[250px] rounded-[10px] bg-[#7EC8FF]">
-        <div className="pt-[35px]">
+      <div className="h-[410px] w-[250px] rounded-[10px] bg-[#7EC8FF] font-extrabold tracking-wide">
+        <div className="pt-[45px]">
           <div className="text-[18px] text-[#FFF613]">이름</div>
           <div className="text-[12px] text-white">
             {first_ko}
@@ -41,7 +41,10 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(
         </div>
         <div>
           <div className="mt-[47px] text-[18px] text-[#FFF613]">전화번호</div>
-          <div className="cursor-pointer text-[12px] text-white underline" onClick={() => handleCopy(phone_num)}>
+          <div
+            className="cursor-pointer text-[12px] font-medium text-white underline"
+            onClick={() => handleCopy(phone_num)}
+          >
             {phone_num}
           </div>
         </div>

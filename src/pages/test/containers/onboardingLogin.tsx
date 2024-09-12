@@ -38,7 +38,7 @@ export default function OnboardingLogin() {
     ) {
       try {
         // Save data to the backend
-        const response = await fetch('http://localhost:5001/api/save', {
+        const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/save', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
