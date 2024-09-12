@@ -95,7 +95,7 @@ export function Onboarding() {
                         overflow: 'hidden',
                       }}
                     >
-                      <div className="bottom_button">
+                      <div className="bottom_button">  
                         <Button
                           onClick={handleOnboarding}
                           className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"

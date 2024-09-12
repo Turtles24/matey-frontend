@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'YUniverse-B';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_yuniverse@1.0/YUniverse-B.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -134,12 +141,9 @@ a {
 }
 
 .main {
-  background: var(
-    --blue-GD,
-    linear-gradient(180deg, #1485c4 7.08%, #55abdc 38.5%, #fff 127.13%)
-  );
-  font-family: "Pretendard";
-  font-family: "Pretendard";
+  background: var(--blue-GD, linear-gradient(180deg, #1485c4 7.08%, #55abdc 38.5%, #fff 127.13%));
+  font-family: 'Pretendard';
+  font-family: 'Pretendard';
   letter-spacing: -0.08rem;
   max-width: 840px;
   height: 100%;
@@ -149,11 +153,8 @@ a {
 
 .App {
   text-align: center;
-  background: var(
-    --blue-GD,
-    linear-gradient(180deg, #1485c4 7.08%, #55abdc 38.5%, #fff 127.13%)
-  );
-  font-family: "Pretendard";
+  background: var(--blue-GD, linear-gradient(180deg, #1485c4 7.08%, #55abdc 38.5%, #fff 127.13%));
+  font-family: 'Pretendard';
   overflow-y: auto; /* �ㅽ겕濡ㅼ씠 蹂댁씠�꾨줉 �ㅼ젙 */
 }
 
@@ -165,7 +166,7 @@ a {
   }
 
   .main_content:before {
-    content: " ";
+    content: ' ';
     position: absolute;
     left: -1px;
     top: 0;
@@ -175,12 +176,61 @@ a {
   }
 
   .main_content:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     right: -1px;
     top: 0;
     bottom: 0;
     border-right: 1px solid;
     border-color: #d1d6db;
+  }
+}
+
+.card-front-enter {
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+  transform-origin: center;
+}
+
+.card-front-exit {
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+  transform-origin: center;
+}
+
+.card-enter {
+  opacity: 0;
+  transform: rotateY(-90deg);
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+  transform-origin: center;
+}
+
+.card-enter-active {
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+  transform-origin: center;
+}
+
+.fade-in {
+  animation: fadeInAnimation 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
