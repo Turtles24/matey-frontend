@@ -7,7 +7,7 @@ export function Start() {
   const navigate = useNavigate();
 
   const handleStart = () => {
-    navigate('/onboarding');
+    navigate('/matey-frontend/onboarding');
   };
 
   return (

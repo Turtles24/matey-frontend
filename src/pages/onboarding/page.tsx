@@ -16,12 +16,12 @@ export function Onboarding() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (location.pathname === '/onboarding/success') {
+  if (location.pathname === '/matey-frontend/onboarding/success') {
     return <OnboardingSuccess />;
   }
 
   const handleOnboarding = () => {
-    navigate('/onboarding/success');
+    navigate('/matey-frontend/onboarding/success');
   };
   return (
     <>
@@ -95,7 +95,7 @@ export function Onboarding() {
                         overflow: 'hidden',
                       }}
                     >
-                      <div className="bottom_button">  
+                      <div className="bottom_button">
                         <Button
                           onClick={handleOnboarding}
                           className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"

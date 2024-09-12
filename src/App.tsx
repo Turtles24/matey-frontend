@@ -30,7 +30,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <BrowserRouter basename={import.meta.env.PUBLIC_URL}>
-           <MainRouter />
+          <MainRouter />
           <Toaster />
         </BrowserRouter>
       </RecoilRoot>

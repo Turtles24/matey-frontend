@@ -9,13 +9,13 @@ import OnboardingLogin from './test/containers/onboardingLogin';
 export function MainRouter() {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/start" element={<Start />} />
-      <Route path="/onboarding/success" element={<Onboarding />} />
-      <Route path="/userInfo" element={<Menu />} />
-      <Route path="/test" element={<Test />} />
-      <Route path="/test/login" element={<OnboardingLogin />} />
+      <Route path="/matey-frontend" element={<MainPage />} />
+      <Route path="/matey-frontend/onboarding" element={<Onboarding />} />
+      <Route path="/matey-frontend/start" element={<Start />} />
+      <Route path="/matey-frontend/onboarding/success" element={<Onboarding />} />
+      <Route path="/matey-frontend/userInfo" element={<Menu />} />
+      <Route path="/matey-frontend/test" element={<Test />} />
+      <Route path="/matey-frontend/test/login" element={<OnboardingLogin />} />
     </Routes>
   );
 }
