@@ -10,4 +10,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  base: '/matey-frontend/', // Ensure this matches your actual deployment subdirectory
 });
