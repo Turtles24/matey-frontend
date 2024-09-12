@@ -9,6 +9,7 @@ export function Test() {
   const [clicked, setClicked] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [fadeIn, setFadeIn] = useState(false); // fadeIn 상태 추가
+  const [userData, setUserData] = useState(null);
 
   const handleCard = () => {
     setAnimate(true);
@@ -24,6 +25,22 @@ export function Test() {
       return () => clearTimeout(timeout);
     }
   }, [animate]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/user-data');
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(userData);
 
   const first = localStorage.getItem('first');
   const second = localStorage.getItem('second');

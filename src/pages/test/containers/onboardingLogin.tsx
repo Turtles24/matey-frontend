@@ -14,7 +14,7 @@ export default function OnboardingLogin() {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     localStorage.setItem('first', first);
     localStorage.setItem('second', second);
 
@@ -27,16 +27,43 @@ export default function OnboardingLogin() {
     localStorage.setItem('insta', insta);
 
     if (
-      first != '' &&
-      second != '' &&
-      first_ko != '' &&
-      second_ko != '' &&
-      phone_num != '' &&
-      bank_id != '' &&
-      insta != '' &&
-      birth != ''
+      first !== '' &&
+      second !== '' &&
+      first_ko !== '' &&
+      second_ko !== '' &&
+      phone_num !== '' &&
+      bank_id !== '' &&
+      insta !== '' &&
+      birth !== ''
     ) {
-      navigate(`/matey-frontend/test?insta=${insta}`);
+      try {
+        // Save data to the backend
+        const response = await fetch('http://localhost:5001/api/save', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            first,
+            second,
+            first_ko,
+            second_ko,
+            birth,
+            phone_num,
+            bank_id,
+            insta,
+          }),
+        });
+
+        if (response.ok) {
+          // Navigate to the new page
+          navigate(`/matey-frontend/test?insta=${insta}`);
+        } else {
+          alert('Failed to save data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     } else {
       alert('값을 모두 입력해주세요');
     }
