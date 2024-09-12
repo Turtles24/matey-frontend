@@ -1,6 +1,7 @@
 import { FakeSuccessIcon } from '../../../components/Icon/onboarding/FakeSuccess';
 import { AlarmBtn } from '../../../components/Icon/onboarding/AlarmBtn';
 import { useNavigate } from 'react-router-dom';
+
 export function FakeSuccess() {
   const navigate = useNavigate();
 

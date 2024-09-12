@@ -6,7 +6,6 @@ export default function OnboardingLogin() {
   const [second, setSecond] = useState('');
   const [first_ko, setFirstKo] = useState('');
   const [second_ko, setSecondKo] = useState('');
-
   const [birth, setBirth] = useState('');
   const [phone_num, setPhoneNum] = useState('');
   const [insta, setInsta] = useState('');
@@ -15,17 +14,6 @@ export default function OnboardingLogin() {
   const navigate = useNavigate();
 
   const handleClick = async () => {
-    localStorage.setItem('first', first);
-    localStorage.setItem('second', second);
-
-    localStorage.setItem('first_ko', first_ko);
-    localStorage.setItem('second_ko', second_ko);
-
-    localStorage.setItem('birth', birth);
-    localStorage.setItem('phone_num', phone_num);
-    localStorage.setItem('bank_id', bank_id);
-    localStorage.setItem('insta', insta);
-
     if (
       first !== '' &&
       second !== '' &&
@@ -56,7 +44,7 @@ export default function OnboardingLogin() {
         });
 
         if (response.ok) {
-          // Navigate to the new page
+          // Navigate to the new page and pass insta as a query parameter
           navigate(`/matey-frontend/test?insta=${insta}`);
         } else {
           alert('Failed to save data');
@@ -65,7 +53,7 @@ export default function OnboardingLogin() {
         console.error('Error:', error);
       }
     } else {
-      alert('값을 모두 입력해주세요');
+      alert('Please fill in all fields');
     }
   };
 
@@ -73,88 +61,23 @@ export default function OnboardingLogin() {
     <>
       <div className="main">
         <div className="main_content">
+          {/* Input fields for user details */}
           <div>
             <div>영어이름</div>
-            <div>
-              {' '}
-              <input
-                placeholder="성"
-                type="text"
-                value={first}
-                onChange={(e) => setFirst(e.target.value)} // onChange 핸들러 추가
-              />
-            </div>
-            <div>
-              <input
-                placeholder="이름"
-                type="text"
-                value={second}
-                onChange={(e) => setSecond(e.target.value)} // onChange 핸들러 추가
-              />
-            </div>
+            <input placeholder="성" type="text" value={first} onChange={(e) => setFirst(e.target.value)} />
+            <input placeholder="이름" type="text" value={second} onChange={(e) => setSecond(e.target.value)} />
           </div>
 
-          <div>
-            <div>한국이름</div>
-            <div>
-              {' '}
-              <input
-                placeholder="성"
-                type="text"
-                value={first_ko}
-                onChange={(e) => setFirstKo(e.target.value)} // onChange 핸들러 추가
-              />
-            </div>
-            <div>
-              <input
-                placeholder="이름"
-                type="text"
-                value={second_ko}
-                onChange={(e) => setSecondKo(e.target.value)} // onChange 핸들러 추가
-              />
-            </div>
-          </div>
+          <div>한국이름</div>
+          <input placeholder="성" type="text" value={first_ko} onChange={(e) => setFirstKo(e.target.value)} />
+          <input placeholder="이름" type="text" value={second_ko} onChange={(e) => setSecondKo(e.target.value)} />
 
-          <div>
-            <div>카드정보</div>
-            <div>
-              {' '}
-              <div>
-                <input
-                  placeholder="생일"
-                  type="text"
-                  value={birth}
-                  onChange={(e) => setBirth(e.target.value)} // onChange 핸들러 추가
-                />
-              </div>
-              <div>
-                <input
-                  placeholder="전화번호"
-                  type="text"
-                  value={phone_num}
-                  onChange={(e) => setPhoneNum(e.target.value)} // onChange 핸들러 추가
-                />
-              </div>
-              <div>
-                {' '}
-                <input
-                  placeholder="계좌번호"
-                  type="text"
-                  value={bank_id}
-                  onChange={(e) => setBankId(e.target.value)} // onChange 핸들러 추가
-                />
-              </div>
-              <div>
-                {' '}
-                <input
-                  placeholder="인스타"
-                  type="text"
-                  value={insta}
-                  onChange={(e) => setInsta(e.target.value)} // onChange 핸들러 추가
-                />
-              </div>
-            </div>
-          </div>
+          {/* More input fields */}
+          <div>카드정보</div>
+          <input placeholder="생일" type="text" value={birth} onChange={(e) => setBirth(e.target.value)} />
+          <input placeholder="전화번호" type="text" value={phone_num} onChange={(e) => setPhoneNum(e.target.value)} />
+          <input placeholder="계좌번호" type="text" value={bank_id} onChange={(e) => setBankId(e.target.value)} />
+          <input placeholder="인스타" type="text" value={insta} onChange={(e) => setInsta(e.target.value)} />
         </div>
         <button onClick={handleClick}>Login</button>
       </div>
