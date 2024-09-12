@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TestProfile, TestProfileBig } from '../Icon/onboarding/TestProfile';
+import { TestProfileBig } from '../Icon/onboarding/TestProfile';
 
 export interface CardBackProps extends React.InputHTMLAttributes<HTMLInputElement> {
   first_ko: string | null;

@@ -51,6 +51,22 @@ export function Test() {
     fetchData();
   }, []);
 
+  const handleClick = async () => {
+    try {
+      const response = await fetch('http://localhost:5001/api/click', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+      console.log('Click registered:', data);
+    } catch (error) {
+      console.error('Error registering click:', error);
+    }
+  };
+
   console.log(userData);
 
   const first = userData?.first; // useEffect 외부에서 userData?.first 값 가져오기
@@ -150,7 +166,7 @@ export function Test() {
           <div className="fixed bottom-[20px] left-1/2 z-10 -translate-x-1/2 translate-y-1 transform">
             {!clicked && <div className="text-[14px] text-black">카드를 클릭해보세요 ☝️</div>}
             {clicked && <div className="text-[14px] text-white">계좌번호를 클릭하면 복사되어요 💸</div>}
-            <button className="mt-[11px]">
+            <button className="mt-[11px]" onClick={handleClick}>
               <TestBtn />
             </button>
           </div>
