@@ -6,7 +6,7 @@ const InstaIcon = () => {
       viewBox="0 0 70 70"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <rect width="70" height="70" fill="url(#pattern0_584_2088)" />
       <defs>

@@ -1,27 +1,31 @@
 import * as React from 'react';
 
 export interface CardBackProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  first_ko: string;
-  second_ko: string;
-  bank_id: string;
-  phone_num: string;
-  insta: string;
+  first_ko: string | null;
+  second_ko: string | null;
+  bank_id: string | null;
+  phone_num: string | null;
+  insta: string | null;
 }
 
 const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(
-  ({ className, name, first_ko, second_ko, bank_id, phone_num, insta, ...props }, ref) => {
-    const handleCopy = (text: string) => {
-      navigator.clipboard.writeText(text).then(
-        () => {
-          alert('복사되었습니다!');
-        },
-        () => {
-          alert('복사에 실패했습니다.');
-        }
-      );
+  ({ first_ko, second_ko, bank_id, phone_num, insta }) => {
+    const handleCopy = (text: string | null) => {
+      if (text) {
+        navigator.clipboard.writeText(text).then(
+          () => {
+            alert('복사되었습니다!');
+          },
+          () => {
+            alert('복사에 실패했습니다.');
+          }
+        );
+      } else {
+        alert('복사할 내용이 없습니다.');
+      }
     };
 
-    const handleInstaClick = (username: string) => {
+    const handleInstaClick = (username: string | null) => {
       const url = `https://www.instagram.com/${username}`;
       window.open(url, '_blank');
     };

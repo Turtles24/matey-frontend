@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { TestBtn } from '../../components/Icon/onboarding/TestBtn';
-import { TestCard } from '../../components/Icon/onboarding/TestCard';
 import { TestProfile } from '../../components/Icon/onboarding/TestProfile';
 import { Motion, spring } from 'react-motion';
 import { Card } from '../../components/ui/card';
@@ -31,7 +30,6 @@ export function Test() {
 
   const first_ko = localStorage.getItem('first_ko');
   const second_ko = localStorage.getItem('second_ko');
-
   const phone_num = localStorage.getItem('phone_num');
   const insta = localStorage.getItem('insta');
   const bank_id = localStorage.getItem('bank_id');
@@ -114,12 +112,7 @@ export function Test() {
               </div>
             </>
           )}
-          <button
-            className="fixed bottom-[20px] left-1/2 z-10 -translate-x-1/2 translate-y-1 transform"
-            onClick={async () => {
-              await incrementClickCount(); // 클릭수 증가 함수 호출
-            }}
-          >
+          <button className="fixed bottom-[20px] left-1/2 z-10 -translate-x-1/2 translate-y-1 transform">
             <TestBtn />
           </button>
         </div>
