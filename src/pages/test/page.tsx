@@ -5,11 +5,22 @@ import { Motion, spring } from 'react-motion';
 import { Card } from '../../components/ui/card';
 import { CardBack } from '../../components/ui/card_back';
 
+interface UserData {
+  first: string;
+  second: string;
+  first_ko: string;
+  second_ko: string;
+  birth: string;
+  phone_num: string;
+  bank_id: string;
+  insta: string;
+}
+
 export function Test() {
   const [clicked, setClicked] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [fadeIn, setFadeIn] = useState(false); // fadeIn 상태 추가
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   const handleCard = () => {
     setAnimate(true);
@@ -42,15 +53,15 @@ export function Test() {
 
   console.log(userData);
 
-  const first = localStorage.getItem('first');
-  const second = localStorage.getItem('second');
+  const first = userData?.first; // useEffect 외부에서 userData?.first 값 가져오기
+  const second = userData?.second;
 
-  const first_ko = localStorage.getItem('first_ko');
-  const second_ko = localStorage.getItem('second_ko');
-  const phone_num = localStorage.getItem('phone_num');
-  const insta = localStorage.getItem('insta');
-  const bank_id = localStorage.getItem('bank_id');
-  const birth = localStorage.getItem('birth');
+  const first_ko = userData?.first_ko;
+  const second_ko = userData?.second_ko;
+  const phone_num = userData?.phone_num;
+  const insta = userData?.insta;
+  const bank_id = userData?.bank_id;
+  const birth = userData?.birth;
 
   return (
     <>
@@ -91,7 +102,12 @@ export function Test() {
                     }}
                     onClick={handleCard}
                   >
-                    <Card birth={birth} first_name={first} second_name={second} job="SonongsilUniv" />
+                    <Card
+                      birth={birth || null}
+                      first_name={first || null}
+                      second_name={second || null}
+                      job="SonongsilUniv"
+                    />
                   </div>
                 )}
               </Motion>
@@ -117,11 +133,11 @@ export function Test() {
                       }}
                     >
                       <CardBack
-                        bank_id={bank_id}
-                        phone_num={phone_num}
-                        insta={insta}
-                        first_ko={first_ko}
-                        second_ko={second_ko}
+                        bank_id={bank_id || null}
+                        phone_num={phone_num || null}
+                        insta={insta || null}
+                        first_ko={first_ko || null}
+                        second_ko={second_ko || null}
                       />
                     </div>
                   )}
