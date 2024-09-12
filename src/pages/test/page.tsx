@@ -75,18 +75,20 @@ export function Test() {
 
       <div className="main">
         <div className="main_content">
-          <div className="ml-6 flex items-center pt-10">
-            <div className="">
-              <TestProfile />
+          {!clicked && (
+            <div className="ml-6 flex items-center pt-10">
+              <div className="">
+                <TestProfile />
+              </div>
+              <div className="ml-2 text-2xl font-bold">
+                {first_ko}
+                {second_ko}
+              </div>
             </div>
-            <div className="ml-2 text-2xl font-bold">
-              {first_ko}
-              {second_ko}
-            </div>
-          </div>
+          )}
 
           {!clicked && (
-            <div className="fixed left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform">
+            <div className="fixed left-1/2 top-[45%] z-10 -translate-x-1/2 -translate-y-1/2 transform">
               <Motion
                 defaultStyle={{ rotate: 0, opacity: 1 }}
                 style={{
@@ -117,7 +119,7 @@ export function Test() {
           {clicked && (
             <>
               <div className={`fixed left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform`}></div>
-              <div className={`fixed left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform`}>
+              <div className={`fixed left-1/2 top-[45%] z-10 -translate-x-1/2 -translate-y-1/2 transform`}>
                 <Motion
                   defaultStyle={{ scale: 1, opacity: 1 }}
                   style={{
@@ -145,9 +147,13 @@ export function Test() {
               </div>
             </>
           )}
-          <button className="fixed bottom-[20px] left-1/2 z-10 -translate-x-1/2 translate-y-1 transform">
-            <TestBtn />
-          </button>
+          <div className="fixed bottom-[20px] left-1/2 z-10 -translate-x-1/2 translate-y-1 transform">
+            {!clicked && <div className="text-[14px] text-black">카드를 클릭해보세요 ☝️</div>}
+            {clicked && <div className="text-[14px] text-white">계좌번호를 클릭하면 복사되어요 💸</div>}
+            <button className="mt-[11px]">
+              <TestBtn />
+            </button>
+          </div>
         </div>
       </div>
     </>

@@ -5,6 +5,8 @@ import { Start } from './onboarding/containers/Start';
 import { Menu } from './userInfo/page';
 import { Test } from './test/page';
 import OnboardingLogin from './test/containers/onboardingLogin';
+import { FakeSuccess } from './test/containers/fakeSuccess';
+import { FakeFinish } from './test/containers/fakeFinish';
 
 export function MainRouter() {
   return (
@@ -16,6 +18,8 @@ export function MainRouter() {
       <Route path="/matey-frontend/userInfo" element={<Menu />} />
       <Route path="/matey-frontend/test" element={<Test />} />
       <Route path="/matey-frontend/test/login" element={<OnboardingLogin />} />
+      <Route path="/matey-frontend/test/successs" element={<FakeSuccess />} />
+      <Route path="/matey-frontend/test/finish" element={<FakeFinish />} />
     </Routes>
   );
 }

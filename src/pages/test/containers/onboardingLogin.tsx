@@ -83,6 +83,8 @@ export default function OnboardingLogin() {
                 value={first}
                 onChange={(e) => setFirst(e.target.value)} // onChange 핸들러 추가
               />
+            </div>
+            <div>
               <input
                 placeholder="이름"
                 type="text"
@@ -102,6 +104,8 @@ export default function OnboardingLogin() {
                 value={first_ko}
                 onChange={(e) => setFirstKo(e.target.value)} // onChange 핸들러 추가
               />
+            </div>
+            <div>
               <input
                 placeholder="이름"
                 type="text"
@@ -115,30 +119,40 @@ export default function OnboardingLogin() {
             <div>카드정보</div>
             <div>
               {' '}
-              <input
-                placeholder="생일"
-                type="text"
-                value={birth}
-                onChange={(e) => setBirth(e.target.value)} // onChange 핸들러 추가
-              />
-              <input
-                placeholder="전화번호"
-                type="text"
-                value={phone_num}
-                onChange={(e) => setPhoneNum(e.target.value)} // onChange 핸들러 추가
-              />
-              <input
-                placeholder="계좌번호"
-                type="text"
-                value={bank_id}
-                onChange={(e) => setBankId(e.target.value)} // onChange 핸들러 추가
-              />
-              <input
-                placeholder="인스타"
-                type="text"
-                value={insta}
-                onChange={(e) => setInsta(e.target.value)} // onChange 핸들러 추가
-              />
+              <div>
+                <input
+                  placeholder="생일"
+                  type="text"
+                  value={birth}
+                  onChange={(e) => setBirth(e.target.value)} // onChange 핸들러 추가
+                />
+              </div>
+              <div>
+                <input
+                  placeholder="전화번호"
+                  type="text"
+                  value={phone_num}
+                  onChange={(e) => setPhoneNum(e.target.value)} // onChange 핸들러 추가
+                />
+              </div>
+              <div>
+                {' '}
+                <input
+                  placeholder="계좌번호"
+                  type="text"
+                  value={bank_id}
+                  onChange={(e) => setBankId(e.target.value)} // onChange 핸들러 추가
+                />
+              </div>
+              <div>
+                {' '}
+                <input
+                  placeholder="인스타"
+                  type="text"
+                  value={insta}
+                  onChange={(e) => setInsta(e.target.value)} // onChange 핸들러 추가
+                />
+              </div>
             </div>
           </div>
         </div>
