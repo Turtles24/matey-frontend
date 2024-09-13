@@ -4,6 +4,7 @@ import { TestProfile } from '../../components/Icon/onboarding/TestProfile';
 import { Motion, spring } from 'react-motion';
 import { Card } from '../../components/ui/card';
 import { CardBack } from '../../components/ui/card_back';
+import { useLocation } from 'react-router-dom';
 
 interface UserData {
   first: string;
@@ -21,6 +22,7 @@ export function Test() {
   const [animate, setAnimate] = useState(false);
   const [fadeIn, setFadeIn] = useState(false); // fadeIn 상태 추가
   const [userData, setUserData] = useState<UserData | null>(null);
+  const location = useLocation(); // Get the current URL location
 
   const handleCard = async () => {
     setAnimate(true);
@@ -51,10 +53,28 @@ export function Test() {
     }
   }, [animate]);
 
+  // Function to extract query parameters from the URL
+  const getInstaFromQuery = () => {
+    const params = new URLSearchParams(location.search);
+    return params.get('insta'); // Get the value of the insta parameter
+  };
+
   useEffect(() => {
     const fetchData = async () => {
+      const insta = getInstaFromQuery(); // Extract insta from query parameters
+      if (!insta) {
+        console.error('Insta parameter is missing');
+        return;
+      }
+
       try {
-        const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/user-data');
+        const response = await fetch(
+          `https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/user-data/${insta}`
+        );
+        if (!response.ok) {
+          console.error('Error fetching user data:', response.status);
+          return;
+        }
         const data = await response.json();
         setUserData(data);
       } catch (error) {
@@ -63,8 +83,7 @@ export function Test() {
     };
 
     fetchData();
-  }, []);
-
+  }, [location]);
   const handleClick = async () => {
     try {
       const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/click', {
