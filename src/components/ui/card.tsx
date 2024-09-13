@@ -21,7 +21,9 @@ const Card = React.forwardRef<HTMLInputElement, CardProps>(({ birth, first_name,
         </div>
       </div>
       <div className="absolute left-1/2 top-1/2 z-10 h-[1px] w-[250px] -translate-x-1/2 -translate-y-1/2 -rotate-45 transform bg-[#FFF613]"></div>
-      <div className="absolute -right-[30px] top-1/2 -translate-y-1/2 -rotate-90 text-4xl">{second_name}</div>
+      <div className="absolute left-[110%] top-1/2 z-10 h-[200px] w-[250px] -translate-x-1/2 -translate-y-1/2 -rotate-90 transform text-4xl">
+        {second_name}
+      </div>
     </div>
   );
 });

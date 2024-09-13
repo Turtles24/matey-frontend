@@ -18,7 +18,7 @@ export function MainRouter() {
       <Route path="/matey-frontend/userInfo" element={<Menu />} />
       <Route path="/matey-frontend/test" element={<Test />} />
       <Route path="/matey-frontend/test/login" element={<OnboardingLogin />} />
-      <Route path="/matey-frontend/test/successs" element={<FakeSuccess />} />
+      <Route path="/matey-frontend/test/success" element={<FakeSuccess />} />
       <Route path="/matey-frontend/test/finish" element={<FakeFinish />} />
     </Routes>
   );

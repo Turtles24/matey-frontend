@@ -4,7 +4,7 @@ import { TestProfile } from '../../components/Icon/onboarding/TestProfile';
 import { Motion, spring } from 'react-motion';
 import { Card } from '../../components/ui/card';
 import { CardBack } from '../../components/ui/card_back';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface UserData {
   first: string;
@@ -23,6 +23,7 @@ export function Test() {
   const [fadeIn, setFadeIn] = useState(false); // fadeIn 상태 추가
   const [userData, setUserData] = useState<UserData | null>(null);
   const location = useLocation(); // Get the current URL location
+  const navigate = useNavigate();
 
   const handleCard = async () => {
     setAnimate(true);
@@ -94,6 +95,7 @@ export function Test() {
       });
 
       const data = await response.json();
+      navigate('/matey-frontend/test/success');
       console.log('Click registered:', data);
     } catch (error) {
       console.error('Error registering click:', error);
