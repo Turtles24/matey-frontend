@@ -12,7 +12,7 @@ export function MainRouter() {
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/start" element={<Start />} />
       <Route path="/onboarding/success" element={<Onboarding />} />
-      <Route path="/userInfo" element={<Menu />} />
+      <Route path="/userInfo"  element={<Menu />} />
       <Route path="/menulist" element={<MenuList />} />
     </Routes>
   );
