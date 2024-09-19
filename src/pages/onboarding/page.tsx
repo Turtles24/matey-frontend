@@ -16,12 +16,12 @@ export function Onboarding() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (location.pathname === '/onboarding/success') {
+  if (location.pathname === '/matey-frontend/onboarding/success') {
     return <OnboardingSuccess />;
   }
 
   const handleOnboarding = () => {
-    navigate('/onboarding/success');
+    navigate('/matey-frontend/onboarding/success');
   };
   return (
     <>
@@ -98,7 +98,7 @@ export function Onboarding() {
                       <div className="bottom_button">
                         <Button
                           onClick={handleOnboarding}
-                          className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"
+                          className="h-[50px] w-[90%] rounded-[14px] text-[16px] font-extrabold"
                         >
                           MATEY 시작하기 !
                         </Button>

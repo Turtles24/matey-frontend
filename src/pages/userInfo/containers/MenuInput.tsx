@@ -12,7 +12,9 @@ const MenuInput = React.forwardRef<HTMLInputElement, MenuInputProps>(({ name, ti
     <div className="mt-3 flex flex-col items-center">
       <div className="flex items-center">
         <div className="text-[12px] font-semibold text-[#FF3D00]">{title}</div>
-        <div className="ml-4 flex items-center space-x-2">  {/* 통일된 마진과 정렬 */}
+        <div className="ml-4 flex items-center space-x-2">
+          {' '}
+          {/* 통일된 마진과 정렬 */}
           {/* inputType에 따른 UI 표시 */}
           {inputType === 'input' ? (
             <input className="h-[30px] w-[153px] rounded-[10px] bg-[#F6F6F6] pl-4" placeholder={name} />
@@ -72,4 +74,3 @@ const MenuInput = React.forwardRef<HTMLInputElement, MenuInputProps>(({ name, ti
 
 MenuInput.displayName = 'MenuInput';
 export { MenuInput };
-  
