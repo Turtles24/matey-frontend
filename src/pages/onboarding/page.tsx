@@ -11,8 +11,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { OnboardingSuccess } from './containers/Success';
 
 export function Onboarding() {
-  const [instagramId, setInstagramId] = useState('');
   const [password, setPassword] = useState('');
+  const [insta, setInsta] = useState('');
+  const [userName, setUserName] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,8 +21,37 @@ export function Onboarding() {
     return <OnboardingSuccess />;
   }
 
-  const handleOnboarding = () => {
-    navigate('/matey-frontend/onboarding/success');
+  const handleClick = async () => {
+    if (insta !== '' && password !== '' && userName !== '') {
+      try {
+        // Save data to the backend
+        const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            insta,
+            password,
+            userName,
+          }),
+        });
+
+        console.log(response);
+
+        if (response.ok) {
+          // Navigate to the new page and pass insta as a query parameter
+          navigate(`/matey-frontend/onboarding/success?insta=${insta}`);
+          localStorage.setItem('userName', userName);
+        } else {
+          alert('Failed to save data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    } else {
+      alert('Please fill in all fields');
+    }
   };
   return (
     <>
@@ -30,24 +60,33 @@ export function Onboarding() {
           <Header Link={'/'} back_disable={'yes'} back_work={'yes'} />
           <Spacing className="mt-28"></Spacing>
 
-          <InfoBox
-            first_line={'인스타그램에서 친구를 찾아볼게요'}
-            second_line={'사용중인 인스타그램 아이디를 알려주세요'}
-          />
+          <InfoBox first_line={'가입을 위해 인스타 아이디가 필요해요'} second_line={''} />
 
           <Spacing className="mt-14"></Spacing>
 
           <PositionCenter>
-            <Input
-              className="w-[90%] text-start"
-              placeholder="인스타그램 아이디"
-              value={instagramId}
-              onChange={(e) => setInstagramId(e.target.value)}
-            />
-          </PositionCenter>
+            <div className="w-[90%]">
+              <Input
+                className="text-start"
+                placeholder="이름"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
 
+              <InputUnderLine className="w-full" />
+            </div>
+          </PositionCenter>
           <PositionCenter>
-            <InputUnderLine />
+            <div className="mt-1 w-[90%]">
+              <Input
+                className="text-start"
+                placeholder="인스타"
+                value={insta}
+                onChange={(e) => setInsta(e.target.value)}
+              />
+
+              <InputUnderLine className="w-full" />
+            </div>
           </PositionCenter>
 
           <Spacing className="mt-2"></Spacing>
@@ -55,8 +94,8 @@ export function Onboarding() {
           {/* Motion을 이용한 애니메이션 처리 */}
           <Motion
             style={{
-              opacity: spring(instagramId.trim() !== '' ? 1 : 0),
-              height: spring(instagramId.trim() !== '' ? 200 : 0),
+              opacity: spring(insta.trim() !== '' && userName.trim() !== '' ? 1 : 0),
+              height: spring(insta.trim() !== '' && userName.trim() !== '' ? 200 : 0),
             }}
           >
             {({ opacity, height }) => (
@@ -97,7 +136,7 @@ export function Onboarding() {
                     >
                       <div className="bottom_button">
                         <Button
-                          onClick={handleOnboarding}
+                          onClick={handleClick}
                           className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"
                         >
                           Matey 시작하기

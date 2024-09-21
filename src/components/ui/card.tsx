@@ -15,7 +15,7 @@ const Card = React.forwardRef<HTMLInputElement, CardProps>(({ birth, first_name,
     >
       <div className="ml-2 mt-2 text-start">
         <div className="absolute top-[30px] -translate-y-1/2 text-4xl">{first_name}</div>
-        <div className="absolute -bottom-[15px] -translate-y-1/2">
+        <div className="absolute -bottom-[10px] -translate-y-1/2">
           <div className="text-sm">{birth}</div>
           <div className="text-sm">{job}</div>
         </div>

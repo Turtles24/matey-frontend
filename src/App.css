@@ -234,3 +234,28 @@ a {
     opacity: 1;
   }
 }
+
+.rotator {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  width: auto;
+  overflow: hidden;
+}
+
+.rotator .item {
+  display: none;
+}
+
+.rotator .active {
+  animation: slider 1s;
+}
+
+@keyframes slider {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

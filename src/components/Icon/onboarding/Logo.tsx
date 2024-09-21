@@ -12,3 +12,35 @@ export function Logo() {
     </svg>
   );
 }
+
+export function LogoRed() {
+  return (
+    <svg width="68" height="58" viewBox="0 0 68 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="16.3107" height="56.4078" fill="#FF3D00" />
+      <path d="M2.71844 9.35547L16.0794 4.741e-05L42.1359 38.7379L34.6602 47.9126L2.71844 9.35547Z" fill="#FF3D00" />
+      <path d="M51.3833 0.679688L64.7443 10.0351L34.6602 47.9127L26.5048 38.0583L51.3833 0.679688Z" fill="#FF3D00" />
+      <rect x="50.9709" y="0.679688" width="16.3107" height="56.4078" fill="#FF3D00" />
+    </svg>
+  );
+}
+
+import tuto1 from '../../../assets/tuto1.png';
+import tuto2 from '../../../assets/tuto2.png';
+import tuto3 from '../../../assets/tuto3.png';
+import tuto4 from '../../../assets/tuto4.png';
+
+export function Tuto1() {
+  return <img src={tuto1}></img>;
+}
+
+export function Tuto2() {
+  return <img src={tuto2}></img>;
+}
+
+export function Tuto3() {
+  return <img src={tuto3}></img>;
+}
+
+export function Tuto4() {
+  return <img src={tuto4}></img>;
+}
