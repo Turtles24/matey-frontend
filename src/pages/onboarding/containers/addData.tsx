@@ -16,7 +16,6 @@ export function AddData() {
   const handleSelect = (element: string) => {
     if (selected && selected !== element) {
       // alert를 띄우고 상태 업데이트를 하지 않음
-      alert('하나의 정보만 선택할 수 있습니다.');
     } else {
       // 선택 또는 선택 취소 로직
       const newSelected = selected === element ? '' : element;

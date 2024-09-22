@@ -14,10 +14,9 @@ export function Start() {
   };
 
   useEffect(() => {
-    // 페이지가 로드된 후 15초 뒤에 버튼이 나타나도록 설정
     const timer = setTimeout(() => {
       setShowButton(true);
-    }, 12000);
+    }, 8000);
 
     // 컴포넌트가 언마운트될 때 타이머를 정리
     return () => clearTimeout(timer);

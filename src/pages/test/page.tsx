@@ -21,6 +21,7 @@ interface UserData {
 
 export function Test() {
   const [clicked, setClicked] = useState(false);
+  const [clickedText, setClickedText] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [fadeIn, setFadeIn] = useState(false); // fadeIn 상태 추가
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -31,7 +32,7 @@ export function Test() {
 
   const handleCard = async () => {
     setAnimate(true);
-
+    setClickedText(true);
     try {
       const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/card/click', {
         method: 'POST',
@@ -253,7 +254,7 @@ export function Test() {
             </>
           )}
           <div className="fixed bottom-[200px] left-1/2 z-10 -translate-x-1/2 translate-y-1 transform">
-            {!clicked && <div className="w-72 text-[24px] font-bold text-black">카드를 클릭해보세요! 🤗</div>}
+            {!clickedText && <div className="w-72 text-[24px] font-bold text-black">카드를 클릭해보세요! 🤗</div>}
           </div>
           {clicked && (
             <div className="fixed bottom-[20px] left-1/2 z-10 mt-[11px] -translate-x-1/2 translate-y-1 transform">

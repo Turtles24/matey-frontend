@@ -12,7 +12,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <input
         type={type}
-        placeholder={'@' + placeholder}
+        placeholder={placeholder}
         className={cn(
           'flex h-10 w-full items-center justify-center border-b-2 border-white bg-transparent px-[10px] py-2 text-center text-black placeholder:text-[#888888] placeholder:text-muted-foreground focus:border-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
           className,

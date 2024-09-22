@@ -135,7 +135,7 @@ export function InputData() {
               <PositionCenter>
                 <Input
                   className="w-[90%] text-start"
-                  placeholder="생일"
+                  placeholder="생일 (2005년 1월 1일 -> 050101)"
                   value={birth}
                   onChange={(e) => setBirth(e.target.value)}
                 />

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { InstaIcon } from '../../../components/Icon/onboarding/InstaIcon';
 import light from '../../../assets/light.png';
-import { Logo, LogoRed } from '../../../components/Icon/onboarding/Logo';
 
 export interface InfoBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   first_line: string;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { TestProfileBig } from '../Icon/onboarding/TestProfile';
 import default_profile from '../../assets/defaulte_profile.png';
 import { Duplicate, Share } from '../Icon/onboarding/CardIcon';
 
@@ -10,9 +9,20 @@ export interface CardBackProps extends React.InputHTMLAttributes<HTMLInputElemen
   insta: string | null;
 }
 
+interface UserDataAdded {
+  bank_id?: string;
+  birth?: string;
+  mbti?: string;
+  phone_num?: string;
+}
+
+interface UserData {
+  insta?: string;
+}
+
 const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }) => {
-  const [userDataAdded, setUserDataAdded] = React.useState();
-  const [userData, setUserData] = React.useState();
+  const [userDataAdded, setUserDataAdded] = React.useState<UserDataAdded | null>(null);
+  const [userData, setUserData] = React.useState<UserData | null>(null);
 
   const getInstaFromQuery = () => {
     const params = new URLSearchParams(location.search);
@@ -197,12 +207,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
           <div className="text-start text-[32px] text-white">{userName}</div>
         </div>
         <div>
-          <div
-            className="cursor-pointer text-start text-[18px] font-medium text-white"
-            onClick={() => handleCopy(phone_num)}
-          >
-            {phone_num}
-          </div>
+          <div className="cursor-pointer text-start text-[18px] font-medium text-white"></div>
         </div>
       </div>
 
@@ -210,18 +215,23 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
         <img className="w-[150px] rounded-full" src={default_profile} />
       </div>
 
-      <div className="mt-20 pb-[24px] pr-3">
-        <div className="flex items-center justify-end">
-          <div className="mr-1 cursor-pointer text-end text-[18px] text-white" onClick={() => handleInstaClick(insta)}>
-            @{insta}
+      <div className="mt-16 pb-[24px] pr-3">
+        {insta !== undefined && insta !== 'null' && (
+          <div className="flex items-center justify-end">
+            <div
+              className="mr-1 cursor-pointer text-end text-[18px] text-white"
+              onClick={() => handleInstaClick(insta)}
+            >
+              @{insta}
+            </div>
+            <div>
+              <Share />
+            </div>
           </div>
-          <div>
-            <Share />
-          </div>
-        </div>
+        )}
 
         <div className="flex items-center justify-end">
-          {birth !== 'null' && (
+          {birth !== undefined && birth !== 'null' && (
             <div className="mr-[3px]">
               <div className="cursor-pointer text-end text-[18px] text-white" onClick={() => handleInstaClick(birth)}>
                 {birth}
@@ -229,7 +239,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
             </div>
           )}
 
-          {mbti !== 'null' && (
+          {mbti !== undefined && mbti !== 'null' && (
             <div className="mr-[3px]">
               <div className="cursor-pointer text-end text-[18px] text-white" onClick={() => handleMbtiClick(mbti)}>
                 {mbti}
@@ -237,7 +247,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
             </div>
           )}
 
-          {phone_num !== 'null' && (
+          {phone_num !== undefined && phone_num !== 'null' && (
             <div className="mr-[3px]">
               <div
                 className="cursor-pointer text-end text-[18px] text-white"
@@ -248,7 +258,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
             </div>
           )}
 
-          {bank_id !== 'null' && (
+          {bank_id !== undefined && bank_id !== 'null' && (
             <div className="mr-[3px]">
               <div className="cursor-pointer text-end text-[18px] text-white" onClick={() => handlePayClick(bank_id)}>
                 {bank_id}
