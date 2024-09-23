@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
 import Header from '../../../containers/header';
@@ -8,58 +8,65 @@ import { InfoBox } from '../containers/InfoBox';
 import { InputUnderLine } from '../containers/InputUnderLine';
 import { Motion, spring } from 'react-motion';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
-interface UserData {
-  insta: string;
-  password: string;
-}
+// Updated zod schema
+const schema = z.object({
+  email: z.string().email({ message: '올바른 형식의 메일을 입력해주세요' }),
+  phone_num: z
+    .string()
+    .regex(/^\d{3}-\d{4}-\d{4}$/, { message: '전화번호는 010-XXXX-XXXX 형태의 숫자로 입력해주세요' }) // Allow digits and dashes
+    .min(13, { message: '전화번호는 13글자여야 합니다' })
+    .max(13, { message: '전화번호는 13글자여야 합니다' }),
+  mbti: z
+    .string()
+    .min(4, { message: 'MBTI 4글자를 입력해주세요' })
+    .max(4, { message: 'MBTI 4글자를 입력해주세요' })
+    .transform((value) => value.toUpperCase()),
+  bank_id: z
+    .string()
+    .regex(/^\d+$/, { message: '숫자만 입력 가능합니다' }) // Allow only digits
+    .nonempty({ message: '계좌번호를 입력해주세요' }),
+});
 
 export function InputData() {
-  const [mbti, setMbti] = useState('');
-  const [birth, setBirth] = useState('');
-  const [phone_num, setPhoneNum] = useState('');
-  const [bank_id, setBankId] = useState('');
-
   const navigate = useNavigate();
-  const [, setUserData] = useState<UserData | null>(null);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
-  // Function to extract query parameters from the URL
-  const getInstaFromQuery = () => {
-    const params = new URLSearchParams(location.search);
-    return params.get('insta'); // Get the value of the insta parameter
-  };
+  const phone_num = watch('phone_num');
+  const birth = watch('birth');
+  const mbti = watch('mbti');
+  const bank_id = watch('bank_id');
 
+  const Select = localStorage.getItem('selectedElement');
+  const userName = localStorage.getItem('userName') || null;
+
+  // Format the phone number as 010-XXXX-XXXX
   useEffect(() => {
-    const fetchData = async () => {
-      const insta = getInstaFromQuery(); // Extract insta from query parameters
-      if (!insta) {
-        console.error('Insta parameter is missing');
-        return;
-      }
+    if (phone_num?.length === 11) {
+      const formattedPhoneNum = phone_num.replace(/(\d{3})(\d{4})(\d{4})/, '010-$2-$3');
+      setValue('phone_num', formattedPhoneNum);
+    }
+  }, [phone_num, setValue]);
 
-      try {
-        const response = await fetch(
-          `https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/api/user-data/${insta}`
-        );
-        if (!response.ok) {
-          console.error('Error fetching user data:', response.status);
-          return;
-        }
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [location]);
-
-  const handleClick = async () => {
-    const insta = getInstaFromQuery(); // Extract insta from query parameters
+  const onSubmit = async (data: any) => {
+    const insta = new URLSearchParams(location.search).get('insta');
+    if (!insta) {
+      alert('Insta parameter is missing');
+      return;
+    }
 
     try {
-      // Save data to the backend
       const response = await fetch('https://port-0-matey-backend-m0zjsul0a4243974.sel4.cloudtype.app/register/data', {
         method: 'POST',
         headers: {
@@ -75,7 +82,6 @@ export function InputData() {
       });
 
       if (response.ok) {
-        // Navigate to the new page and pass insta as a query parameter
         navigate(`/matey-frontend/test?insta=${insta}`);
       } else {
         alert('Failed to save data');
@@ -85,9 +91,6 @@ export function InputData() {
     }
   };
 
-  const Select = localStorage.getItem('selectedElement');
-  const userName = localStorage.getItem('userName') || null; // useEffect 외부에서 userData?.first 값 가져오기
-
   return (
     <>
       <div className="main">
@@ -95,63 +98,62 @@ export function InputData() {
           <Header Link={'/'} back_disable={'yes'} back_work={'yes'} />
           <Spacing className="mt-28"></Spacing>
 
-          <InfoBox first_line={userName + '님의 ' + Select + '를 입력해주세요'} second_line={''} />
+          <InfoBox first_line={`${userName}님의 ${Select}를 입력해주세요`} second_line={''} />
 
           <Spacing className="mt-14"></Spacing>
 
           <PositionCenter>
             {Select === 'mbti' && (
-              <PositionCenter>
+              <div className="w-[90%] text-start">
                 <Input
-                  className="w-[90%] text-start"
+                  className="text-start"
                   placeholder="MBTI"
-                  value={mbti}
-                  onChange={(e) => setMbti(e.target.value)}
+                  {...register('mbti')}
+                  maxLength={4} // Restrict MBTI input to 4 characters
                 />
-              </PositionCenter>
+                <InputUnderLine />
+
+                {errors.mbti && <p className="text-red-500">{errors.mbti.message}</p>}
+              </div>
             )}
 
             {Select === '전화번호' && (
-              <PositionCenter>
+              <div className="w-[90%] text-start">
                 <Input
-                  className="w-[90%] text-start"
                   placeholder="전화번호"
-                  value={phone_num}
-                  onChange={(e) => setPhoneNum(e.target.value)}
+                  className="text-start"
+                  {...register('phone_num')}
+                  minLength={13}
+                  maxLength={13} // Matches the format 010-XXXX-XXXX
                 />
-              </PositionCenter>
-            )}
-            {Select === '계좌번호' && (
-              <PositionCenter>
-                <Input
-                  className="w-[90%] text-start"
-                  placeholder="계좌번호"
-                  value={bank_id}
-                  onChange={(e) => setBankId(e.target.value)}
-                />
-              </PositionCenter>
-            )}
-            {Select === '생일' && (
-              <PositionCenter>
-                <Input
-                  className="w-[90%] text-start"
-                  placeholder="생일 (2005년 1월 1일 -> 050101)"
-                  value={birth}
-                  onChange={(e) => setBirth(e.target.value)}
-                />
-              </PositionCenter>
-            )}
-          </PositionCenter>
+                <InputUnderLine />
 
-          <PositionCenter>
-            <InputUnderLine />
+                {errors.phone_num && <p className="text-red-500">{errors.phone_num.message}</p>}
+              </div>
+            )}
+
+            {Select === '이메일' && (
+              <div className="w-[90%] text-start">
+                <Input placeholder="이메일" className="text-start" {...register('email')} />
+                <InputUnderLine />
+                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+              </div>
+            )}
+
+            {Select === '계좌번호' && (
+              <div className="w-[90%] text-start">
+                <Input placeholder="계좌번호" className="text-start" {...register('bank_id')} />
+                <InputUnderLine />
+                {errors.bank_id && <p className="text-red-500">{errors.bank_id.message}</p>}
+              </div>
+            )}
           </PositionCenter>
 
           <Spacing className="mt-2"></Spacing>
           <Motion
             style={{
-              opacity: spring(mbti.trim() !== '' || phone_num.trim() || bank_id.trim() || birth.trim() ? 1 : 0),
-              height: spring(mbti.trim() !== '' || phone_num.trim() || bank_id.trim() || birth.trim() ? 200 : 0),
+              opacity: spring(1),
+              height: spring(200),
             }}
           >
             {({ opacity, height }) => (
@@ -163,7 +165,10 @@ export function InputData() {
                 }}
               >
                 <div className="bottom_button">
-                  <Button onClick={handleClick} className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold">
+                  <Button
+                    onClick={handleSubmit(onSubmit)} // Correct way to handle form submission
+                    className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"
+                  >
                     Matey 시작하기
                   </Button>
                 </div>

@@ -14,18 +14,9 @@ export function AddData() {
   const insta = getInstaFromQuery(); // Extract insta from query parameters
 
   const handleSelect = (element: string) => {
-    if (selected && selected !== element) {
-      // alert를 띄우고 상태 업데이트를 하지 않음
-    } else {
-      // 선택 또는 선택 취소 로직
-      const newSelected = selected === element ? '' : element;
-      setSelected(newSelected); // 새로운 선택 상태로 업데이트
-      if (newSelected) {
-        localStorage.setItem('selectedElement', newSelected); // 선택된 값을 localStorage에 저장
-      } else {
-        localStorage.removeItem('selectedElement'); // 선택 취소 시 localStorage에서 삭제
-      }
-    }
+    const newSelected = element; // 새로 선택한 값으로 무조건 업데이트
+    setSelected(newSelected); // 새로운 선택 상태로 업데이트
+    localStorage.setItem('selectedElement', newSelected); // 선택된 값을 localStorage에 저장
   };
 
   const handleJustStart = () => {
@@ -52,7 +43,7 @@ export function AddData() {
               />
             </div>
             <div className="mt-[11px] flex items-center justify-start">
-              <CheckBox element={'mbti'} checked={selected === 'mbti'} onChange={() => handleSelect('mbti')} />
+              <CheckBox element={'MBTI'} checked={selected === 'mbti'} onChange={() => handleSelect('mbti')} />
             </div>
             <div className="mt-[11px] flex items-center justify-start">
               <CheckBox
@@ -62,7 +53,7 @@ export function AddData() {
               />
             </div>
             <div className="mt-[11px] flex items-center justify-start">
-              <CheckBox element={'생일'} checked={selected === '생일'} onChange={() => handleSelect('생일')} />
+              <CheckBox element={'이메일'} checked={selected === '이메일'} onChange={() => handleSelect('이메일')} />
             </div>
           </div>
         </div>

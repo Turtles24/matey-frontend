@@ -2,72 +2,170 @@ import * as React from 'react';
 
 // 한글 자음과 모음을 로마자로 변환하는 기본 맵
 const initialRomanizationMap: { [key: string]: string } = {
-  가: 'Ga',
-  강: 'Kang',
-  나: 'Na',
-  다: 'Da',
-  라: 'Ra',
-  마: 'Ma',
-  바: 'Ba',
-  사: 'Sa',
+  가: 'GA',
+  강: 'KANG',
+  나: 'NA',
+  다: 'DA',
+  라: 'RA',
+  마: 'MA',
+  바: 'BA',
+  사: 'SA',
   아: 'A',
-  자: 'Ja',
-  차: 'Cha',
-  카: 'Ka',
-  타: 'Ta',
-  파: 'Pa',
-  하: 'Ha',
-  우: 'Woo',
-  현: 'Hyun',
-  이: 'Lee',
-  거: 'Geo',
-  경: 'Gyeong',
-  고: 'Go',
-  공: 'Gong',
-  구: 'Gu',
-  기: 'Gi',
-  너: 'Neo',
-  노: 'No',
-  누: 'Nu',
-  다: 'Da',
-  도: 'Do',
-  두: 'Du',
-  라: 'Ra',
-  루: 'Ru',
-  리: 'Ri',
-  마: 'Ma',
-  모: 'Mo',
-  무: 'Mu',
-  보: 'Bo',
-  부: 'Bu',
-  서: 'Seo',
-  소: 'So',
-  수: 'Su',
-  여: 'Yeo',
+  자: 'JA',
+  차: 'CHA',
+  카: 'KA',
+  타: 'TA',
+  파: 'PA',
+  하: 'HA',
+  우: 'WOO',
+  현: 'HYEON',
+  이: 'LEE',
+  거: 'GEO',
+  경: 'GYEONG',
+  고: 'GO',
+  공: 'GONG',
+  구: 'GU',
+  기: 'GI',
+  너: 'NEO',
+  노: 'NO',
+  누: 'NU',
+  도: 'DO',
+  두: 'DU',
+  루: 'RU',
+  리: 'RI',
+  모: 'MO',
+  무: 'MU',
+  보: 'BO',
+  부: 'BU',
+  서: 'SEO',
+  소: 'SO',
+  수: 'SU',
+  여: 'YEO',
   오: 'O',
-  요: 'Yo',
-  우: 'U',
-  유: 'Yu',
-  자: 'Ja',
-  저: 'Jeo',
-  조: 'Jo',
-  주: 'Ju',
-  차: 'Cha',
-  처: 'Cheo',
-  초: 'Cho',
-  추: 'Chu',
-  타: 'Ta',
-  토: 'To',
-  투: 'Tu',
-  파: 'Pa',
-  포: 'Po',
-  푸: 'Pu',
-  하: 'Ha',
-  호: 'Ho',
-  후: 'Hu',
-  정: 'Jeong',
-  연: 'Yeon',
-  // 더 많은 음절을 추가할 수 있습니다
+  요: 'YO',
+  유: 'YU',
+  저: 'JEO',
+  조: 'JO',
+  주: 'JU',
+  처: 'CHEO',
+  초: 'CHO',
+  추: 'CHU',
+  토: 'TO',
+  투: 'TU',
+  포: 'PO',
+  푸: 'PU',
+  호: 'HO',
+  후: 'HU',
+  정: 'JEONG',
+  연: 'YEON',
+  황: 'HWANG',
+  은: 'EUN',
+  성: 'SEONG',
+  닥: 'DAK',
+  단: 'DAN',
+  닫: 'DAD',
+  달: 'DAL',
+  담: 'DAM',
+  답: 'DAB',
+  닷: 'DAT',
+  당: 'DANG',
+  닿: 'DAET',
+  대: 'DAE',
+  댁: 'DAEK',
+  댄: 'DAEN',
+  댐: 'DAEM',
+  댕: 'DANG',
+  더: 'DUH',
+  덕: 'DUK',
+  던: 'DUN',
+  덤: 'DUM',
+  덥: 'DUB',
+  덧: 'DUT',
+  덫: 'DUT',
+  데: 'DAE',
+  도: 'DO',
+  독: 'DOK',
+  돈: 'DON',
+  돌: 'DOL',
+  돔: 'DOM',
+  동: 'DONG',
+  돚: 'DOT',
+  돛: 'DOT',
+  돼: 'DWAE',
+  되: 'DWAE',
+  됐: 'DWAET',
+  됴: 'DYO',
+  두: 'DOO',
+  둑: 'DOOK',
+  둔: 'DOON',
+  둠: 'DOOM',
+  둡: 'DOOP',
+  둥: 'DOONG',
+  뒤: 'DWI',
+  듀: 'DU',
+  듄: 'DUNE',
+  드: 'DEH',
+  득: 'DUK',
+  든: 'DUN',
+  듣: 'DUD',
+  들: 'DUL',
+  듬: 'DUM',
+  듭: 'DUB',
+  듯: 'DUT',
+  등: 'DUNG',
+  디: 'DI',
+  딕: 'DIK',
+  딘: 'DIN',
+  딛: 'DID',
+  딜: 'DIL',
+  딥: 'DIP',
+  딩: 'DING',
+  라: 'RA',
+  락: 'RAK',
+  란: 'RAN',
+  랄: 'RAL',
+  람: 'RAM',
+  랑: 'RANG',
+  랙: 'RAEK',
+  랜: 'RAEN',
+  램: 'RAM',
+  랩: 'RAB',
+  랫: 'RAT',
+  랭: 'RANG',
+  량: 'RYANG',
+  러: 'RUH',
+  럭: 'RUK',
+  런: 'RUN',
+  럼: 'RUM',
+  럽: 'RUB',
+  렁: 'RUNG',
+  레: 'REH',
+  렉: 'REK',
+  렌: 'REN',
+  렐: 'REL',
+  렘: 'REM',
+  려: 'RYUH',
+  련: 'RYUN',
+  령: 'RYUNG',
+  로: 'ROH',
+  록: 'ROK',
+  론: 'RON',
+  롱: 'RONG',
+  뢰: 'RYEH',
+  료: 'RYO',
+  룡: 'RYONG',
+  루: 'ROOH',
+  룩: 'ROOK',
+  룬: 'ROON',
+  룰: 'ROOL',
+  류: 'RYU',
+  리: 'RI',
+  릭: 'RIK',
+  린: 'RIN',
+  릴: 'RIL',
+  림: 'RIM',
+  립: 'RIB',
+  링: 'RING',
 };
 
 // 한글을 로마자로 변환하는 함수 (간단한 규칙 적용)
@@ -89,18 +187,39 @@ export interface CardProps extends React.InputHTMLAttributes<HTMLInputElement> {
   job: string | null;
 }
 
-const Card = React.forwardRef<HTMLInputElement, CardProps>(({ birth, first_name, job }, ref) => {
-  // first_name이 null이거나 빈 문자열이면 기본값으로 처리
-  const name = first_name || ''; // first_name이 null이면 빈 문자열로 대체
+const Card = React.forwardRef<HTMLInputElement, CardProps>(({ birth, first_name, job }) => {
+  const name = first_name || '';
+  const splitName = name.split('');
+  const first = splitName[0] || '';
+  const second = splitName.slice(1).join('') || '';
 
-  // 한글 이름에서 성과 이름을 분리하는 간단한 로직
-  const splitName = name.split(''); // 성과 이름을 분리
-  const first = splitName[0] || ''; // 성이 없을 경우 빈 문자열로 대체
-  const second = splitName.slice(1).join('') || ''; // 이름이 없을 경우 빈 문자열로 대체
-
-  // 성과 이름을 각각 로마자로 변환
   const romanizedFirstName = romanizeKoreanName(first);
   const romanizedSecondName = romanizeKoreanName(second);
+
+  const secondNameRef = React.useRef<HTMLDivElement>(null);
+  const [fontSize, setFontSize] = React.useState(55);
+
+  React.useEffect(() => {
+    const adjustFontSize = () => {
+      const maxWidth = 220; // 최대 너비
+      const element = secondNameRef.current;
+
+      if (element) {
+        let currentFontSize = fontSize;
+        while (element.scrollWidth > maxWidth && currentFontSize > 35) {
+          currentFontSize -= 1; // 폰트 크기 줄이기
+          setFontSize(currentFontSize);
+        }
+      }
+    };
+
+    adjustFontSize();
+    window.addEventListener('resize', adjustFontSize);
+
+    return () => {
+      window.removeEventListener('resize', adjustFontSize);
+    };
+  }, [romanizedSecondName, fontSize]);
 
   return (
     <div
@@ -108,14 +227,18 @@ const Card = React.forwardRef<HTMLInputElement, CardProps>(({ birth, first_name,
       style={{ fontFamily: 'YUniverse-B' }}
     >
       <div className="ml-2 mt-2 text-start">
-        <div className="absolute top-[30px] -translate-y-1/2 text-4xl">{romanizedFirstName}</div>
+        <div className="absolute top-[30px] -translate-y-1/2 text-4xl text-[55px]">{romanizedFirstName}</div>
         <div className="absolute -bottom-[10px] -translate-y-1/2">
           <div className="text-sm">{birth}</div>
           <div className="text-sm">{job}</div>
         </div>
       </div>
       <div className="absolute left-1/2 top-1/2 z-10 h-[1px] w-[250px] -translate-x-1/2 -translate-y-1/2 -rotate-45 transform bg-[#FFF613]"></div>
-      <div className="absolute left-[110%] top-1/2 z-10 h-[200px] w-[250px] -translate-x-1/2 -translate-y-1/2 -rotate-90 transform text-4xl">
+      <div
+        ref={secondNameRef}
+        className="absolute left-[92%] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 -rotate-90 transform"
+        style={{ fontSize: `${fontSize}px`, whiteSpace: 'nowrap' }}
+      >
         {romanizedSecondName}
       </div>
     </div>

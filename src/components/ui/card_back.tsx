@@ -28,20 +28,6 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
     const params = new URLSearchParams(location.search);
     return params.get('insta'); // Get the value of the insta parameter
   };
-  const handleCopy = (text: string | null) => {
-    if (text) {
-      navigator.clipboard.writeText(text).then(
-        () => {
-          alert('복사되었습니다!');
-        },
-        () => {
-          alert('복사에 실패했습니다.');
-        }
-      );
-    } else {
-      alert('복사할 내용이 없습니다.');
-    }
-  };
 
   const handleInstaClick = (username: string | null) => {
     const url = `https://www.instagram.com/${username}`;
@@ -202,7 +188,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
 
   return (
     <div className="h-[410px] w-[250px] rounded-[10px] bg-[#7EC8FF] font-extrabold tracking-wide">
-      <div className="pl-[22px] pt-[30px]">
+      <div className="pl-[22px] pt-[22px]">
         <div>
           <div className="text-start text-[32px] text-white">{userName}</div>
         </div>
@@ -215,7 +201,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
         <img className="w-[150px] rounded-full" src={default_profile} />
       </div>
 
-      <div className="mt-16 pb-[24px] pr-3">
+      <div className="mt-20 pb-[24px] pr-3">
         {insta !== undefined && insta !== 'null' && (
           <div className="flex items-center justify-end">
             <div

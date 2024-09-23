@@ -53,6 +53,7 @@ export function Onboarding() {
       alert('Please fill in all fields');
     }
   };
+
   return (
     <>
       <div className="main">
