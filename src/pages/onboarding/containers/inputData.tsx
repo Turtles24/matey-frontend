@@ -59,7 +59,7 @@ export function InputData() {
     }
   }, [phone_num, setValue]);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async () => {
     const insta = new URLSearchParams(location.search).get('insta');
     if (!insta) {
       alert('Insta parameter is missing');
@@ -113,7 +113,9 @@ export function InputData() {
                 />
                 <InputUnderLine />
 
-                {errors.mbti && <p className="text-red-500">{errors.mbti.message}</p>}
+                {errors.mbti && (
+                  <p className="text-red-500">{typeof errors.mbti.message === 'string' ? errors.mbti.message : null}</p>
+                )}
               </div>
             )}
 
@@ -128,7 +130,11 @@ export function InputData() {
                 />
                 <InputUnderLine />
 
-                {errors.phone_num && <p className="text-red-500">{errors.phone_num.message}</p>}
+                {errors.phone_num && (
+                  <p className="text-red-500">
+                    {typeof errors.phone_num.message === 'string' ? errors.phone_num.message : null}
+                  </p>
+                )}
               </div>
             )}
 
@@ -136,7 +142,11 @@ export function InputData() {
               <div className="w-[90%] text-start">
                 <Input placeholder="이메일" className="text-start" {...register('email')} />
                 <InputUnderLine />
-                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-red-500">
+                    {typeof errors.email.message === 'string' ? errors.email.message : null}
+                  </p>
+                )}
               </div>
             )}
 
@@ -144,7 +154,11 @@ export function InputData() {
               <div className="w-[90%] text-start">
                 <Input placeholder="계좌번호" className="text-start" {...register('bank_id')} />
                 <InputUnderLine />
-                {errors.bank_id && <p className="text-red-500">{errors.bank_id.message}</p>}
+                {errors.bank_id && (
+                  <p className="text-red-500">
+                    {typeof errors.bank_id.message === 'string' ? errors.bank_id.message : null}
+                  </p>
+                )}
               </div>
             )}
           </PositionCenter>
@@ -166,7 +180,7 @@ export function InputData() {
               >
                 <div className="bottom_button">
                   <Button
-                    onClick={handleSubmit(onSubmit)} // Correct way to handle form submission
+                    onClick={handleSubmit(onSubmit) && onSubmit} // Correct way to handle form submission
                     className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"
                   >
                     Matey 시작하기
