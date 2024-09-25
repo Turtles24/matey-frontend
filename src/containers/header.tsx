@@ -29,7 +29,7 @@ const Header: FC<HeaderProps> = ({ back_disable, back_work, Link }) => {
   };
   return (
     <>
-      <div className="mr-[140px] mt-[20px] flex items-center justify-center text-[19px] text-lg font-bold not-italic">
+      <div className="mr-[290px] mt-[20px] flex items-center justify-center text-[19px] text-lg font-bold not-italic">
         {!back_disable && (
           <a onClick={handleBackClick}>
             <LeftArrow />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/ui/button';
 import { CheckBox } from './checkBox';
+import { motion } from 'framer-motion';
 
 export function AddData() {
   const navigate = useNavigate();
@@ -29,38 +30,74 @@ export function AddData() {
 
   return (
     <>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-2/3 transform">
-        <div className="mt-1 text-base font-extrabold">잠깐, 원한다면</div>
-        <div className="w-[300px] text-2xl font-extrabold">다른 정보도 공유도 가능해요 </div>
-
-        <div className="flex justify-center">
-          <div>
-            <div className="mt-[40px] flex items-center justify-start">
-              <CheckBox
-                element={'전화번호'}
-                checked={selected === '전화번호'}
-                onChange={() => handleSelect('전화번호')}
-              />
-            </div>
-            <div className="mt-[11px] flex items-center justify-start">
-              <CheckBox element={'MBTI'} checked={selected === 'mbti'} onChange={() => handleSelect('mbti')} />
-            </div>
-            <div className="mt-[11px] flex items-center justify-start">
-              <CheckBox
-                element={'계좌번호'}
-                checked={selected === '계좌번호'}
-                onChange={() => handleSelect('계좌번호')}
-              />
-            </div>
-            <div className="mt-[11px] flex items-center justify-start">
-              <CheckBox element={'이메일'} checked={selected === '이메일'} onChange={() => handleSelect('이메일')} />
+      <div className="main">
+        <div className="main_content">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-2/3 transform">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }} // 시작 상태
+            animate={{ y: 0, opacity: 1 }} // 애니메이션 상태
+            exit={{ y: 20, opacity: 0 }} // 종료 상태
+            transition={{ duration: 1 }} // 애니메이션 지속 시간
+          >
+            <div className="mt-1 text-base font-extrabold">잠깐, 원한다면</div>
+            <div className="w-[300px] text-2xl font-extrabold">다른 정보도 공유도 가능해요 </div>
+          </motion.div>
+          <div className="flex justify-center">
+            <div>
+              <div className="mt-[40px] flex items-center justify-start">
+              <motion.div
+                initial={{ y: 20, opacity: 0 }} // 시작 상태
+                animate={{ y: 0, opacity: 1 }} // 애니메이션 상태
+                exit={{ y: 20, opacity: 0 }} // 종료 상태
+                transition={{ duration: 1 }} // 애니메이션 지속 시간
+              >
+                <CheckBox
+                  element={'전화번호'}
+                  checked={selected === '전화번호'}
+                  onChange={() => handleSelect('전화번호')}
+                />
+                </motion.div>
+              </div>
+            
+              <div className="mt-[11px] flex items-center justify-start">
+              <motion.div
+            initial={{ y: 20, opacity: 0 }} // 시작 상태
+            animate={{ y: 0, opacity: 1 }} // 애니메이션 상태
+            exit={{ y: 20, opacity: 0 }} // 종료 상태
+            transition={{ duration: 1 }} // 애니메이션 지속 시간
+          >
+                <CheckBox element={'MBTI'} checked={selected === 'mbti'} onChange={() => handleSelect('mbti')} />
+                </motion.div>
+              </div>
+              <div className="mt-[11px] flex items-center justify-start">
+              <motion.div
+            initial={{ y: 20, opacity: 0 }} // 시작 상태
+            animate={{ y: 0, opacity: 1 }} // 애니메이션 상태
+            exit={{ y: 20, opacity: 0 }} // 종료 상태
+            transition={{ duration: 1 }} // 애니메이션 지속 시간
+          >
+                <CheckBox
+                  element={'계좌번호'}
+                  checked={selected === '계좌번호'}
+                  onChange={() => handleSelect('계좌번호')}
+                />
+                </motion.div>
+              </div>
+              <div className="mt-[11px] flex items-center justify-start">
+              <motion.div
+            initial={{ y: 20, opacity: 0 }} // 시작 상태
+            animate={{ y: 0, opacity: 1 }} // 애니메이션 상태
+            exit={{ y: 20, opacity: 0 }} // 종료 상태
+            transition={{ duration: 1 }} // 애니메이션 지속 시간
+          >
+                <CheckBox element={'이메일'} checked={selected === '이메일'} onChange={() => handleSelect('이메일')} />
+                  </motion.div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="bottom_button flex justify-center">
-        <Button
+        <div className="bottom_button flex justify-center">
+          <Button
           onClick={handleAddData}
           className="h-[50px] w-[40%] rounded-[12px] text-[16px] font-extrabold"
           variant={'default'}
@@ -76,7 +113,10 @@ export function AddData() {
         >
           그냥 시작하기
         </Button>
+        
       </div>
+    </div>
+    </div>
     </>
   );
 }
