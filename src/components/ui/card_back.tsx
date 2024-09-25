@@ -201,7 +201,7 @@ const CardBack = React.forwardRef<HTMLInputElement, CardBackProps>(({ userName }
         <img className="w-[150px] rounded-full" src={default_profile} />
       </div>
 
-      <div className="mt-20 pb-[24px] pr-3">
+      <div className="mt-[92px] pb-[24px] pr-3">
         {insta !== undefined && insta !== 'null' && (
           <div className="flex items-center justify-end">
             <div
