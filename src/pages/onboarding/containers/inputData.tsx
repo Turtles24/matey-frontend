@@ -164,7 +164,7 @@ export function InputData() {
               >
                 <div className="bottom_button">
                   <Button onClick={handleClick} className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold">
-                    Matey 시작하기
+                    MATEY 시작하기
                   </Button>
                 </div>
               </div>

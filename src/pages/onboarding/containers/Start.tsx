@@ -53,7 +53,7 @@ export function Start() {
                     className="h-[50px] w-[90%] rounded-[12px] text-[16px] font-extrabold"
                     variant={'secondary'}
                   >
-                    Matey 시작하기
+                    MATEY 시작하기
                   </Button>
                 </div>
               )}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Success } from '../../../components/Icon/onboarding/Success';
+import {motion} from 'framer-motion';
 
 const OnboardingSuccess = () => {
   const navigate = useNavigate();
