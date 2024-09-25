@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Success } from '../../../components/Icon/onboarding/Success';
+import {motion} from 'framer-motion';
 
 const OnboardingSuccess = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const OnboardingSuccess = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate(`/matey-frontend/test/add/data?insta=${insta}`);
-    }, 1500); // 3초 후에 경로 이동
+    }, 1200); // 3초 후에 경로 이동
 
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 정리
   }, [navigate]);

@@ -9,7 +9,7 @@ export function LogoSwap() {
     interval.current = window.setInterval(() => {
       // 브라우저 환경에서는 window.setInterval 사용
       setCount((prev) => (prev + 1) % 5);
-    }, 2000);
+    }, 1600);
     return () => {
       if (interval.current) {
         clearInterval(interval.current);

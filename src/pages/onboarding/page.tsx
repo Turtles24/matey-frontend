@@ -9,7 +9,7 @@ import { InputUnderLine } from './containers/InputUnderLine';
 import { Motion, spring } from 'react-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { OnboardingSuccess } from './containers/Success';
-
+import {motion} from 'framer-motion';
 export function Onboarding() {
   const [password, setPassword] = useState('');
   const [insta, setInsta] = useState('');
@@ -60,13 +60,17 @@ export function Onboarding() {
         <div className="main_content">
           <Header Link={'/'} back_disable={'yes'} back_work={'yes'} />
           <Spacing className="mt-28"></Spacing>
-
           <InfoBox first_line={'가입을 위해 인스타 아이디가 필요해요'} second_line={''} />
-
           <Spacing className="mt-14"></Spacing>
-
+          <motion.div
+            initial={{ y: 20, opacity: 0 }} // 시작 상태
+            animate={{ y: 0, opacity: 1 }} // 애니메이션 상태
+            exit={{ y: 20, opacity: 0 }} // 종료 상태
+            transition={{ duration: 1 }} // 애니메이션 지속 시간
+            className="text-2xl font-bold"
+          >
           <PositionCenter>
-            <div className="w-[90%]">
+            <div className="w-[90%] animate-fade">
               <Input
                 className="text-start"
                 placeholder="이름"
@@ -78,7 +82,8 @@ export function Onboarding() {
             </div>
           </PositionCenter>
           <PositionCenter>
-            <div className="mt-1 w-[90%]">
+            <div className="mt-1 w-[90%] animate-fade">
+              
               <Input
                 className="text-start"
                 placeholder="인스타"
@@ -89,7 +94,7 @@ export function Onboarding() {
               <InputUnderLine className="w-full" />
             </div>
           </PositionCenter>
-
+          </motion.div>
           <Spacing className="mt-2"></Spacing>
 
           {/* Motion을 이용한 애니메이션 처리 */}
@@ -109,14 +114,13 @@ export function Onboarding() {
               >
                 <PositionCenter>
                   <Input
-                    className="w-[90%] text-start"
+                    className="w-[90%] text-start animate-fade"
                     placeholder="비밀번호"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </PositionCenter>
-
                 <PositionCenter>
                   <InputUnderLine />
                 </PositionCenter>
